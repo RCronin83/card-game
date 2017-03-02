@@ -2,7 +2,7 @@ let deckReady = require('./deck.js');
 let players = ['Ryan','Matt'];
 
 
-mobile.exports = function playGame(players){
+module.exports = function playGame(players){
   let deck = deckReady();
   let numberOfWinsPlayerOne = 0;
   let numberOfWinsPlayerTwo = 0;
@@ -35,5 +35,5 @@ mobile.exports = function playGame(players){
     numberOfTies: numberOfTies
   };
 };
-playGame(players);
+
 // console.log(mattsDumbWorkaround(playersArray));
