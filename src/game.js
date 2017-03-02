@@ -1,21 +1,39 @@
 let deckReady = require('./deck.js');
+let players = ['Ryan','Matt'];
 
 
-function playGame(){
-  let cards = buildDeck();{
-    for (let i=0; i < 52; i+=2){
-    } if (players[0].cards > players[1].cards){
-      players[0].numberOfWins = numberOfWins += 1;
-    } if (players[0].cards < players[1].cards){
-      players[1].numberOfWins = numberOfWins += 1;
-
+mobile.exports = function playGame(players){
+  let deck = deckReady();
+  let numberOfWinsPlayerOne = 0;
+  let numberOfWinsPlayerTwo = 0;
+  let numberOfTies = 0;
+  let date = new Date();
+  let gameDate = date.getMonth() + '-' + date.getDay() + '-' + date.getFullYear() + ' at ' + date.getHours() + ':' + date.getMinutes();
+  for (let i=0; i<52; i+=2){
+    if (deck[i]>deck[i+1]){
+      numberOfWinsPlayerOne++;
+    } else if (deck[i] < deck[i+1]){
+      numberOfWinsPlayerTwo++;
     } else {
-        numberOfTies = numberOfTies += 1;
+      numberOfTies++;
     }
   }
-
-  return players[0].numberOfWins, players[1].numberOfWins, numberOfTies;
-
-}
-
-playGame();
+  return {
+    date: gameDate,
+    players: [
+      {
+        name: players[0],
+        numberOfWins: numberOfWinsPlayerOne,
+        winRatio: numberOfWinsPlayerOne / 26
+      },
+      {
+        name: players[1],
+        numberOfWins: numberOfWinsPlayerTwo,
+        winRatio: numberOfWinsPlayerTwo / 26
+      }
+    ],
+    numberOfTies: numberOfTies
+  };
+};
+playGame(players);
+// console.log(mattsDumbWorkaround(playersArray));
